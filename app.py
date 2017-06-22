@@ -1,8 +1,15 @@
-from core.user_input import input_start
+from core.input import InputWithData, InputStr, InputFloat
 
 
 def main():
-    input_start()
+    print("To add a triangle, please type:")
+    for user_input in (InputWithData(InputStr("Name:")), InputFloat("Side A:"), InputFloat("Side B:"),
+                       InputFloat("Side C:")):
+        try:
+            user_input.value()
+        except:
+            print('You entered incorrect value for "{q}" question'.format(q=user_input))
+            break
 
 
 if __name__ == '__main__':
