@@ -1,15 +1,23 @@
-from core.input import InputWithData, InputStr, InputFloat
+from core.input import YesInput
+from core.printer import SortedTrianglePrinter
+from core.triangle import Triangles, triangle_init
 
 
 def main():
-    print("To add a triangle, please type:")
-    for user_input in (InputWithData(InputStr("Name:")), InputFloat("Side A:"), InputFloat("Side B:"),
-                       InputFloat("Side C:")):
+    print("Please input the parameters of triangle:")
+    try:
+        new_triangle = triangle_init()
+    except:
+        raise Exception("Value can't be empty and sides must be a number.")
+    triangles_list = Triangles(new_triangle)
+    answer = YesInput().value()
+    while answer == "y" or answer == "yes":
         try:
-            user_input.value()
+            triangles_list = triangles_list.with_triangle(triangle_init())
+            answer = YesInput().value()
         except:
-            print('You entered incorrect value for "{q}" question'.format(q=user_input))
-            break
+            raise Exception("Value can't be empty and sides must be a number.")
+    SortedTrianglePrinter(triangles_list).print()
 
 
 if __name__ == '__main__':

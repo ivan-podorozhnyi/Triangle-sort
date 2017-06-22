@@ -10,10 +10,10 @@ class Triangle(object):
         self._side_b = b
         self._side_c = c
 
-    def __str__(self):
+    def __str__(self) -> str:
         return '[Triangle: {n} ]: {a} cm.'.format(n=self._name, a=self.calc_area())
 
-    def calc_area(self):
+    def calc_area(self) -> float:
         half = (self._side_a + self._side_b + self._side_c) / 2
         return round(math.sqrt(half * (half - self._side_a) * (half - self._side_b)
                                * (half - self._side_c)), 2)
@@ -22,9 +22,6 @@ class Triangle(object):
 class Triangles(object):
     def __init__(self, *triangles: Triangle):
         self._data = list(triangles)
-
-    def add(self, triangle: Triangle):
-        self._data.append(triangle)
 
     def with_triangle(self, triangle: Triangle):
         return Triangles(triangle, *self._data)

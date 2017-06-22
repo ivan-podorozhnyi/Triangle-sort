@@ -15,9 +15,8 @@ class StdoutTrianglePrinter(TrianglePrinter):
 
     def print(self):
         print("==========Triangles list:==========")
-
-        for i in self._triangles.data:
-            print(i)
+        for triangle in self._triangles.data:
+            print(triangle)
 
     @property
     def triangles(self):
